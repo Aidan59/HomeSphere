@@ -38,7 +38,7 @@ public class User {
     @Column
     private String email;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "user_id")
     private List<Device> deviceList;
 
     public User() {
