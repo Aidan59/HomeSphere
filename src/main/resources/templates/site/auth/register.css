@@ -1,0 +1,25 @@
+body{
+    justify-items: center;
+}
+
+h1{
+    font-family: "Segoe UI";
+}
+
+label{
+    justify-self: center;
+    font-family: "Segoe UI";
+}
+
+input{
+    width: 250px;
+    height: 30px;
+    border-radius: 10px;
+    border-width: 1px;
+    margin-top: 10px;
+    display: block;
+    font-family: "Segoe UI";
+}
+
+
+
