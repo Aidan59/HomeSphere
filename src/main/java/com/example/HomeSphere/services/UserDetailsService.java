@@ -29,4 +29,5 @@ public class UserDetailsService implements org.springframework.security.core.use
 
         return new com.example.HomeSphere.security.UserDetails(user.get());
     }
+
 }
