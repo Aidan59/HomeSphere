@@ -2,7 +2,6 @@ package com.example.HomeSphere.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
@@ -18,22 +17,21 @@ public class User {
     private int id;
 
     @NotEmpty
-    @Size(min = 2, max = 50)
+    @Size(min = 2)
     @Column
     private String login;
 
     @NotEmpty
-    @Size(min = 2, max = 50)
+    @Size(min = 2)
     @Column
     private String password;
 
-    @NotEmpty
-    @Size(min = 2, max = 50)
+    @Size(min = 2)
     @Column
     private String fullname;
 
     @NotEmpty
-    @Size(min = 2, max = 50)
+    @Size(min = 2)
     @Email
     @Column
     private String email;
