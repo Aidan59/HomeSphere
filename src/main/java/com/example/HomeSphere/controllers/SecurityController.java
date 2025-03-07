@@ -3,6 +3,7 @@ package com.example.HomeSphere.controllers;
 import com.example.HomeSphere.models.User;
 import com.example.HomeSphere.services.RegistrationService;
 import com.example.HomeSphere.util.UserValidator;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -38,7 +39,7 @@ public class SecurityController {
     }
 
     @PostMapping("/auth/register")
-    public String performRegister(@ModelAttribute("user") User user, BindingResult bindingResult) {
+    public String performRegister(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
 
         userValidator.validate(user, bindingResult);
 
@@ -49,8 +50,5 @@ public class SecurityController {
         registrationService.register(user);
 
         return "redirect:/auth/login";
-
-        //TODO
-        //Test registration
     }
 }
