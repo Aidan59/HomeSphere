@@ -3,29 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Home page</title>
-    <!--<link rel="stylesheet" th:href="@{/css/homePage.css}">-->
-    <link rel="stylesheet" href="../../static/css/homePage.css">
+    <!--<link rel="stylesheet" th:href="@{/css/home.css}">-->
+    <link rel="stylesheet" href="../../static/css/home.css">
+    <script src="/static/scripts/modalFrame.js" defer></script>
 </head>
-<body>
-<div class="container">
+<body id="body">
+
+<div id="wrap" class="wrap">
+    <div id="modal" class="modal">
+
+        <img id="closeModal" class="close_button" src="/static/images/close.png" alt="Img err">
+        <p style="font-size: 30px; padding-top: 20px">Add device</p><p style="font-size: 20px; padding-top: 20px">Connect device to see it on main page</p>
+
+        <div style="padding-top: 200px">
+            <button class="button" id="camera">Camera</button>
+            <button class="button" id="sensor">Sensor</button>
+        </div>
+    </div>
+</div>
+
+<div id="container" class="container">
+
+
 
     <div class="left_side">
         <h1 class="logo_text">Home Shpere</h1>
 
-        <a class="button" href="/homePage/home">Home screen</a>
-        <a class="button" href="/homePage/devices">Devices</a>
-        <a class="button" href="/homePage/events">Events</a>
-        <a class="button" href="/homePage/settings">Settings</a>
-        <a class="button" href="/homePage/help">Help</a>
+        <a class="menu_option" href="/homePage/home">Home screen</a>
+        <a class="menu_option" href="/homePage/devices">Devices</a>
+        <a class="menu_option" href="/homePage/events">Events</a>
+        <a class="menu_option" href="/homePage/settings">Settings</a>
+        <a class="menu_option" href="/homePage/help">Help</a>
     </div>
 
     <div class="right_side">
+
         <div class="right_top">
             <p style="font-size: 20px">Today is,</p>
             <div style="font-size: 20px; padding-right: 20px" id="currentDate"></div>
             <img href="/homePage/profile" class="profile_img" src="/static/images/profile.png">
         </div>
-        <div class="right_bottom"></div>
+
+        <div class="right_bottom">
+            <div style="font-size: 40px" class="devices">
+                <p>Devices</p>
+                <hr>
+                <div class="grid_container">
+                    <div id="openModal" class="open_modal">
+                        <img class="img_add" style="height: 80px; width: 80px;" src="/static/images/add.png">
+                    </div>
+                </div>
+
+            </div>
+            <div class="events">
+                <p style="font-size: 40px">Events</p>
+                <hr>
+                <p style="font-size: 20px; justify-self: center; padding-top: 20px">No events here.</p>
+            </div>
+        </div>
+
     </div>
 
 </div>
