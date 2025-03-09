@@ -1,8 +1,11 @@
 package com.example.HomeSphere.controllers;
 
 import com.example.HomeSphere.models.User;
+import com.example.HomeSphere.services.EmailService;
 import com.example.HomeSphere.services.RegistrationService;
+import com.example.HomeSphere.services.UserService;
 import com.example.HomeSphere.util.UserValidator;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,13 +17,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class SecurityController {
 
+    private final UserService userService;
     private final UserValidator userValidator;
     private final RegistrationService registrationService;
+    private final EmailService emailService;
 
     @Autowired
-    public SecurityController(UserValidator userValidator, RegistrationService registrationService) {
+    public SecurityController(UserService userService, UserValidator userValidator, RegistrationService registrationService, EmailService emailService) {
+        this.userService = userService;
         this.userValidator = userValidator;
         this.registrationService = registrationService;
+        this.emailService = emailService;
     }
 
     @GetMapping("/auth/login")
@@ -30,7 +37,7 @@ public class SecurityController {
 
     @GetMapping("/home")
     public String home() {
-        return "/homePage/homePage";
+        return "home";
     }
 
     @GetMapping("/auth/register")
@@ -50,5 +57,12 @@ public class SecurityController {
         registrationService.register(user);
 
         return "redirect:/auth/login";
+    }
+
+    @GetMapping("/mail")
+    public String sendMail() throws MessagingException {
+        emailService.sendConfirmationEmail(userService.getUserEmail());
+
+        return "/auth/registerEmailConfirm";
     }
 }

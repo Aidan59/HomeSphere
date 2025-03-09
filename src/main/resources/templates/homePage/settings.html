@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home page</title>
+    <!--<link rel="stylesheet" th:href="@{/css/homePage.css}">-->
+    <link rel="stylesheet" href="../../static/css/homePage.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="left_side">
+        <h1 class="logo_text">Home Shpere</h1>
+
+        <a class="button" href="/homePage/home">Home screen</a>
+        <a class="button" href="/homePage/devices">Devices</a>
+        <a class="button" href="/homePage/events">Events</a>
+        <a class="button" href="/homePage/settings">Settings</a>
+        <a class="button" href="/homePage/help">Help</a>
+    </div>
+
+    <div class="right_side">
+        <div class="right_top">
+            <p style="font-size: 20px">Today is,</p>
+            <div style="font-size: 20px; padding-right: 20px" id="currentDate"></div>
+            <img href="/homePage/profile" class="profile_img" src="/static/images/profile.png">
+        </div>
+        <div class="right_bottom"></div>
+    </div>
+
+</div>
+
+<script>
+    const currentDate = new Date();
+    const options = { month: 'long', day: 'numeric' };
+    const formattedDate = currentDate.toLocaleDateString('en-EN', options);
+    document.getElementById('currentDate').textContent = formattedDate;
+</script>
+
+</body>
+</html>
