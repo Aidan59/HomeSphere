@@ -19,8 +19,21 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public String getUserEmail() {
-        // TODO
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
+
+    public User getCurrentUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth != null && auth.isAuthenticated()) {
+            return userRepository.findByLogin(auth.getName()).get();
+        }
+
+        throw new RuntimeException();
+    }
+
+    /*public String getUserEmail() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         if (auth != null && auth.isAuthenticated()) {
@@ -32,5 +45,5 @@ public class UserService {
             }
         }
         throw new RuntimeException("User service error");
-    }
+    }*/
 }

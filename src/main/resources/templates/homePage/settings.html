@@ -2,15 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home page</title>
-    <!--<link rel="stylesheet" th:href="@{/css/home.css}">-->
-    <link rel="stylesheet" href="../../static/css/home.css">
+    <title>Settings</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" href="/static/css/home.css">
 </head>
 <body>
 <div class="container">
 
     <div class="left_side">
-        <h1 class="logo_text">Home Shpere</h1>
+        <h1 class="logo_text">Home Sphere</h1>
 
         <a class="button" href="/homePage/home">Home screen</a>
         <a class="button" href="/homePage/devices">Devices</a>
@@ -23,7 +23,7 @@
         <div class="right_top">
             <p style="font-size: 20px">Today is,</p>
             <div style="font-size: 20px; padding-right: 20px" id="currentDate"></div>
-            <img href="/homePage/profile" class="profile_img" src="/static/images/profile.png">
+            <img href="/homePage/profile" class="profile_img" src="/images/general/profile.png">
         </div>
         <div class="right_bottom"></div>
     </div>

@@ -3,23 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Home page</title>
-    <!--<link rel="stylesheet" th:href="@{/css/home.css}">-->
-    <link rel="stylesheet" href="../../static/css/home.css">
-    <script src="/static/scripts/modalFrame.js" defer></script>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <script th:src="@{/scripts/modalFrame.js}" defer></script>
 </head>
 <body id="body">
 
 <div id="wrap" class="wrap">
-    <div id="modal" class="modal">
 
-        <img id="closeModal" class="close_button" src="/static/images/close.png" alt="Img err">
+    <div id="modal" class="modal">
+        <img id="closeModal" class="close_button" th:src="@{/images/general/close.png}" alt="Img err">
         <p style="font-size: 30px; padding-top: 20px">Add device</p><p style="font-size: 20px; padding-top: 20px">Connect device to see it on main page</p>
 
         <div style="padding-top: 200px">
-            <button class="button" id="camera">Camera</button>
-            <button class="button" id="sensor">Sensor</button>
+            <button class="button" id="camera_button">Camera</button>
+            <button class="button" id="sensor_button">Sensor</button>
         </div>
     </div>
+
+    <div id="modal_camera" class="modal_camera">
+        <img id="closeModalCamera" class="close_button" th:src="@{/images/general/close.png}" alt="Img err">
+        <div class="modal_camera_content">
+            <p style="align-self: center; padding-top: 100px">Camera</p>
+            <form method="POST" th:action="@{/addCamera}" th:object="${device}">
+                <input style="display: block" th:field="*{name}" class="text_field" placeholder="Name" type="text">
+                <input style="display: block" th:field="*{ip}" class="text_field" placeholder="IP" type="text">
+                <input style="display: block" class="submit_button" type="submit" value="Add">
+            </form>
+        </div>
+    </div>
+
+    <div id="modal_sensor" class="modal_sensor">
+        <img id="closeModalSensor" class="close_button" th:src="@{/images/general/close.png}" alt="Img err">
+        <p>Sensor</p>
+    </div>
+
 </div>
 
 <div id="container" class="container">
@@ -27,13 +45,38 @@
 
 
     <div class="left_side">
-        <h1 class="logo_text">Home Shpere</h1>
 
-        <a class="menu_option" href="/homePage/home">Home screen</a>
-        <a class="menu_option" href="/homePage/devices">Devices</a>
-        <a class="menu_option" href="/homePage/events">Events</a>
-        <a class="menu_option" href="/homePage/settings">Settings</a>
-        <a class="menu_option" href="/homePage/help">Help</a>
+        <div class="left_bottom"></div>
+
+        <div class="wrapper" style="padding-left: 20px ">
+
+        <h1 class="logo_text">Home Sphere</h1>
+
+            <div class="menu">
+                <a class="menu_option" th:href="@{/homePage/home}">
+                    <img th:src="@{/images/menu/home.png}" src="/static/images/menu/home.png">
+                    <span>Home screen</span>
+                </a>
+                <a class="menu_option" th:href="@{/homePage/devices}">
+                    <img th:src="@{/images/menu/device.png}" src="/static/images/menu/device.png">
+                    <span>Devices</span>
+                </a>
+                <a class="menu_option" th:href="@{/homePage/events}">
+                    <img th:src="@{/images/menu/event.png}" src="/static/images/menu/event.png">
+                    <span>Events</span>
+                </a>
+                <a class="menu_option" th:href="@{/homePage/settings}">
+                    <img th:src="@{/images/menu/setting.png}" src="/static/images/menu/setting.png">
+                    <span>Settings</span>
+                </a>
+                <a class="menu_option" th:href="@{/homePage/help}">
+                    <img th:src="@{/images/menu/help.png}" src="/static/images/menu/help.png">
+                    <span>Help</span>
+                </a>
+            </div>
+        </div>
+
+
     </div>
 
     <div class="right_side">
@@ -41,7 +84,7 @@
         <div class="right_top">
             <p style="font-size: 20px">Today is,</p>
             <div style="font-size: 20px; padding-right: 20px" id="currentDate"></div>
-            <img href="/homePage/profile" class="profile_img" src="/static/images/profile.png">
+            <img href="/homePage/profile" class="profile_img" th:src="@{/images/general/profile.png}" src="/static/images/general/profile.png">
         </div>
 
         <div class="right_bottom">
@@ -49,8 +92,17 @@
                 <p>Devices</p>
                 <hr>
                 <div class="grid_container">
-                    <div id="openModal" class="open_modal">
-                        <img class="img_add" style="height: 80px; width: 80px;" src="/static/images/add.png">
+                    <div th:each="device : ${deviceList}">
+                        <a th:href="${device.getIp()}">
+                        <div class="device_item_grid">
+                            <img class="img_cam" style="height: 80px; width: 80px;" th:src="@{/images/general/cctv.png}" src="/static/images/general/cctv.png">
+                            <p th:text="${device.getName()}"></p> <!--TODO-->
+                        </div>
+                        </a>
+                    </div>
+
+                    <div id="openModal" class="open_modal_grid">
+                        <img class="img_add" style="height: 80px; width: 80px;" th:src="@{/images/general/add.png}" src="/static/images/general/add.png">
                     </div>
                 </div>
 

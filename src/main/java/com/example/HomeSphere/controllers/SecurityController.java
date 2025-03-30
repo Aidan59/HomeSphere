@@ -1,5 +1,6 @@
 package com.example.HomeSphere.controllers;
 
+import com.example.HomeSphere.models.Device;
 import com.example.HomeSphere.models.User;
 import com.example.HomeSphere.services.EmailService;
 import com.example.HomeSphere.services.RegistrationService;
@@ -9,6 +10,7 @@ import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,10 +37,6 @@ public class SecurityController {
         return "/auth/login";
     }
 
-    @GetMapping("/home")
-    public String home() {
-        return "home";
-    }
 
     @GetMapping("/auth/register")
     public String register(@ModelAttribute("user") User user) {
@@ -59,10 +57,10 @@ public class SecurityController {
         return "redirect:/auth/login";
     }
 
-    @GetMapping("/mail")
+    /*@GetMapping("/mail")
     public String sendMail() throws MessagingException {
         emailService.sendConfirmationEmail(userService.getUserEmail());
 
         return "/auth/registerEmailConfirm";
-    }
+    }*/
 }

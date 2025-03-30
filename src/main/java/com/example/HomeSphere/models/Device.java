@@ -14,8 +14,6 @@ public class Device {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotEmpty
-    @Size(min = 2, max = 50)
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user_id;
