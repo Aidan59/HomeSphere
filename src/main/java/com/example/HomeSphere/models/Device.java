@@ -1,9 +1,10 @@
 package com.example.HomeSphere.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+
+import java.util.List;
 
 @Entity
 @Table(name = "devices")
@@ -27,6 +28,10 @@ public class Device {
     @Size(min = 2, max = 50)
     @Column
     private String name;
+
+    @OneToMany(mappedBy = "device_id")
+    private List<DeviceEvent> deviceEventsList;
+
 
     public Device() {
     }

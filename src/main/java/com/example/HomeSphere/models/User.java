@@ -39,6 +39,9 @@ public class User {
     @OneToMany(mappedBy = "user_id")
     private List<Device> deviceList;
 
+    @OneToMany(mappedBy = "user_id")
+    private List<UserEvent> userEventList;
+
     public User() {
     }
 

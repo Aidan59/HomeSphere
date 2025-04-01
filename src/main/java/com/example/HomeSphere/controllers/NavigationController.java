@@ -1,6 +1,7 @@
 package com.example.HomeSphere.controllers;
 
 import com.example.HomeSphere.models.Device;
+import com.example.HomeSphere.models.Event;
 import com.example.HomeSphere.services.DeviceService;
 import com.example.HomeSphere.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 public class NavigationController {
@@ -23,6 +29,9 @@ public class NavigationController {
 
     @GetMapping("/homePage/home")
     public String home(@ModelAttribute("device") Device device, Model model) {
+        List<Event> events = new ArrayList<>();
+        /*Collections.addAll();*/
+
         model.addAttribute("deviceList", userService.getCurrentUser().getDeviceList());
 
         return "/homePage/home";
