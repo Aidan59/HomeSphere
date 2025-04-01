@@ -6,7 +6,6 @@ import com.example.HomeSphere.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,11 +23,11 @@ public class DevicesController {
     }
 
     @PostMapping("/addCamera")
-    public String addDevice(@ModelAttribute("device") @Valid Device device, BindingResult bindingResult) {
+    public String addCamera(@ModelAttribute("device") @Valid Device device, BindingResult bindingResult) {
 
         device.setUser_id(userService.getCurrentUser());
         deviceService.save(device);
 
-        return "redirect:/home";
+        return "redirect:/homePage/home";
     }
 }

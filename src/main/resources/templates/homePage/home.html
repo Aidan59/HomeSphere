@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Home page</title>
+    <link rel="stylesheet" th:href="@{/css/template.css}">
+    <link rel="stylesheet" href="/static/css/template.css">
+
     <link rel="stylesheet" th:href="@{/css/home.css}">
     <link rel="stylesheet" href="/static/css/home.css">
     <script th:src="@{/scripts/modalFrame.js}" defer></script>
@@ -12,17 +15,16 @@
 <div id="wrap" class="wrap">
 
     <div id="modal" class="modal">
-        <img id="closeModal" class="close_button" th:src="@{/images/general/close.png}" alt="Img err">
         <p style="font-size: 30px; padding-top: 20px">Add device</p><p style="font-size: 20px; padding-top: 20px">Connect device to see it on main page</p>
 
         <div style="padding-top: 200px">
             <button class="button" id="camera_button">Camera</button>
             <button class="button" id="sensor_button">Sensor</button>
         </div>
+        <img id="close_button" class="close_button" th:src="@{/images/general/close.png}">
     </div>
 
     <div id="modal_camera" class="modal_camera">
-        <img id="closeModalCamera" class="close_button" th:src="@{/images/general/close.png}" alt="Img err">
         <div class="modal_camera_content">
             <p style="align-self: center; padding-top: 100px">Camera</p>
             <form method="POST" th:action="@{/addCamera}" th:object="${device}">
@@ -31,11 +33,12 @@
                 <input style="display: block" class="submit_button" type="submit" value="Add">
             </form>
         </div>
+        <img id="close_button_camera" class="close_button" th:src="@{/images/general/close.png}">
     </div>
 
     <div id="modal_sensor" class="modal_sensor">
-        <img id="closeModalSensor" class="close_button" th:src="@{/images/general/close.png}" alt="Img err">
         <p>Sensor</p>
+        <img id="close_button_sensor" class="close_button" th:src="@{/images/general/close.png}">
     </div>
 
 </div>
@@ -96,7 +99,7 @@
                         <a th:href="${device.getIp()}">
                         <div class="device_item_grid">
                             <img class="img_cam" style="height: 80px; width: 80px;" th:src="@{/images/general/cctv.png}" src="/static/images/general/cctv.png">
-                            <p th:text="${device.getName()}"></p> <!--TODO-->
+                            <p th:text="${device.getName()}"></p>
                         </div>
                         </a>
                     </div>

@@ -3,10 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Devices</title>
-    <link rel="stylesheet" th:href="@{/css/home.css}">
-    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" th:href="@{/css/template.css}">
+    <link rel="stylesheet" href="/static/css/template.css">
+
+    <link rel="stylesheet" th:href="@{/css/devices.css}">
+    <link rel="stylesheet" href="/static/css/devices.css">
+
+    <script th:src="@{/scripts/modalFrame.js}" defer></script>
 </head>
 <body>
+
+<div id="wrap" class="wrap">
+
+    <div id="modal" class="modal">
+        <p style="font-size: 30px; padding-top: 20px">Add device</p><p style="font-size: 20px; padding-top: 20px">Connect device to see it on main page</p>
+
+        <div style="padding-top: 200px">
+            <button class="button" id="camera_button">Camera</button>
+            <button class="button" id="sensor_button">Sensor</button>
+        </div>
+        <img id="close_button" class="close_button" th:src="@{/images/general/close.png}">
+    </div>
+
+    <div id="modal_camera" class="modal_camera">
+        <div class="modal_camera_content">
+            <p style="align-self: center; padding-top: 100px">Camera</p>
+            <form method="POST" th:action="@{/addCamera}" th:object="${device}">
+                <input style="display: block" th:field="*{name}" class="text_field" placeholder="Name" type="text">
+                <input style="display: block" th:field="*{ip}" class="text_field" placeholder="IP" type="text">
+                <input style="display: block" class="submit_button" type="submit" value="Add">
+            </form>
+        </div>
+        <img id="close_button_camera" class="close_button" th:src="@{/images/general/close.png}">
+    </div>
+
+    <div id="modal_sensor" class="modal_sensor">
+        <p>Sensor</p>
+        <img id="close_button_sensor" class="close_button" th:src="@{/images/general/close.png}">
+    </div>
+
+</div>
+
 <div class="container">
 
     <div class="left_side">

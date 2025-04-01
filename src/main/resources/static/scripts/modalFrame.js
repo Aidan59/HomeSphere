@@ -1,4 +1,3 @@
-const container = document.getElementById("container");
 const wrap = document.getElementById("wrap");
 
 const modal = document.getElementById("modal");
@@ -6,22 +5,26 @@ const modalCamera = document.getElementById("modal_camera")
 const modalSensor = document.getElementById("modal_sensor")
 
 const openModalBtn = document.getElementById("openModal");
-const closeModalBtn = document.getElementById("closeModal");
+const closeModalBtn = document.getElementById("close_button");
 
 const cameraBtn = document.getElementById("camera_button");
-const closeModalCameraBtn = document.getElementById("closeModalCamera");
+const closeModalCamera = document.getElementById("close_button_camera")
 
 const sensorBtn = document.getElementById("sensor_button");
-const closeModalSensorBtn = document.getElementById("closeModalSensor");
+const closeModalSensor = document.getElementById("close_button_sensor")
+
+
+closeModalBtn.onclick = function() {
+    modal.style.display = "none";
+    modalCamera.style.display = "none";
+    modalSensor.style.display = "none"
+
+    wrap.style.display = "none";
+}
 
 openModalBtn.onclick = function() {
     wrap.style.display = "block";
     modal.style.display = "block";
-}
-
-closeModalBtn.onclick = function() {
-    modal.style.display = "none";
-    wrap.style.display = "none";
 }
 
 cameraBtn.onclick = function() {
@@ -29,9 +32,9 @@ cameraBtn.onclick = function() {
     modalCamera.style.display = "block";
 }
 
-closeModalCameraBtn.onclick = function () {
+closeModalCamera.onclick = function (){
     modalCamera.style.display = "none";
-    wrap.style.display = "none"
+    wrap.style.display = "none";
 }
 
 sensorBtn.onclick = function() {
@@ -39,7 +42,8 @@ sensorBtn.onclick = function() {
     modalSensor.style.display = "block";
 }
 
-closeModalSensorBtn.onclick = function (){
+closeModalSensor.onclick = function (){
     modalSensor.style.display = "none";
     wrap.style.display = "none";
 }
+

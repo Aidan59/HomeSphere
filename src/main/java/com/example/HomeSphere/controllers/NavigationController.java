@@ -29,7 +29,7 @@ public class NavigationController {
     }
 
     @GetMapping("/homePage/devices")
-    public String devices(Model model) {
+    public String devices(@ModelAttribute("device") Device device, Model model) {
 
         model.addAttribute("deviceList", userService.getCurrentUser().getDeviceList());
 
