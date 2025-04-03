@@ -1,5 +1,6 @@
 package com.example.HomeSphere.config;
 
+import com.example.HomeSphere.handlers.LoginSuccessHandler;
 import com.example.HomeSphere.services.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,10 +18,12 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
+    private final LoginSuccessHandler loginSuccessHandler;
 
     @Autowired
-    public SecurityConfig(UserDetailsService userDetailsService) {
+    public SecurityConfig(UserDetailsService userDetailsService, LoginSuccessHandler loginSuccessHandler) {
         this.userDetailsService = userDetailsService;
+        this.loginSuccessHandler = loginSuccessHandler;
     }
 
     @Bean
@@ -33,9 +36,10 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .loginPage("/auth/login")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/homePage/home", true)
+                        .successHandler(loginSuccessHandler)
                         .failureUrl("/auth/login?error")
                         .permitAll()
+
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")

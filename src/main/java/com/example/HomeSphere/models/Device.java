@@ -67,4 +67,12 @@ public class Device {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<DeviceEvent> getDeviceEventsList() {
+        return deviceEventsList;
+    }
+
+    public void setDeviceEventsList(List<DeviceEvent> deviceEventsList) {
+        this.deviceEventsList = deviceEventsList;
+    }
 }

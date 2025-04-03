@@ -92,4 +92,12 @@ public class User {
     public void setDeviceList(List<Device> deviceList) {
         this.deviceList = deviceList;
     }
+
+    public List<UserEvent> getUserEventList() {
+        return userEventList;
+    }
+
+    public void setUserEventList(List<UserEvent> userEventList) {
+        this.userEventList = userEventList;
+    }
 }

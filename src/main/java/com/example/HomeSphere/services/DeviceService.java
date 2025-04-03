@@ -14,18 +14,17 @@ public class DeviceService {
 
     @Autowired
     private DeviceRepository deviceRepository;
+    private UserService userService;
 
     public DeviceService(DeviceRepository deviceRepository) {
         this.deviceRepository = deviceRepository;
     }
 
-    public List<DeviceEvent> getDeviceEvents(){
-        //TODO
-
-        return null;
-    }
-
     public void save(Device device) {
         deviceRepository.save(device);
+    }
+
+    public void getAllDevices() {
+
     }
 }

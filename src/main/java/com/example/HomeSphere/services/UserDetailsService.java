@@ -4,6 +4,8 @@ import com.example.HomeSphere.models.User;
 import com.example.HomeSphere.repositories.UserRepository;
 import com.example.HomeSphere.security.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,16 @@ public class UserDetailsService implements org.springframework.security.core.use
         }
 
         return new com.example.HomeSphere.security.UserDetails(user.get());
+    }
+
+    public User getCurrentUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth != null && auth.isAuthenticated()) {
+            return userRepository.findByLogin(auth.getName()).get();
+        }
+
+        throw new RuntimeException();
     }
 
 }

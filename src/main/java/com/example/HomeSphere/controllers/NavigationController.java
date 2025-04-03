@@ -1,8 +1,9 @@
 package com.example.HomeSphere.controllers;
 
-import com.example.HomeSphere.models.Device;
-import com.example.HomeSphere.models.Event;
+import com.example.HomeSphere.models.*;
 import com.example.HomeSphere.services.DeviceService;
+import com.example.HomeSphere.services.EventService;
+import com.example.HomeSphere.services.UserDetailsService;
 import com.example.HomeSphere.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,10 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class NavigationController {
@@ -21,18 +19,21 @@ public class NavigationController {
     @Autowired
     private UserService userService;
     private DeviceService deviceService;
+    private EventService eventService;
+    private UserDetailsService userDetailsService;
 
-    public NavigationController(UserService userService, DeviceService deviceService) {
+    public NavigationController(UserService userService, DeviceService deviceService, EventService eventService, UserDetailsService userDetailsService) {
         this.userService = userService;
         this.deviceService = deviceService;
+        this.eventService = eventService;
+        this.userDetailsService = userDetailsService;
     }
 
     @GetMapping("/homePage/home")
     public String home(@ModelAttribute("device") Device device, Model model) {
-        List<Event> events = new ArrayList<>();
-        /*Collections.addAll();*/
 
-        model.addAttribute("deviceList", userService.getCurrentUser().getDeviceList());
+        model.addAttribute("events", eventService.getAllEvents());
+        model.addAttribute("deviceList", userDetailsService.getCurrentUser().getDeviceList());
 
         return "/homePage/home";
     }
@@ -40,13 +41,15 @@ public class NavigationController {
     @GetMapping("/homePage/devices")
     public String devices(@ModelAttribute("device") Device device, Model model) {
 
-        model.addAttribute("deviceList", userService.getCurrentUser().getDeviceList());
+        model.addAttribute("deviceList", userDetailsService.getCurrentUser().getDeviceList());
 
         return "/homePage/devices";
     }
 
     @GetMapping("/homePage/events")
     public String events(Model model) {
+
+        model.addAttribute("events", eventService.getAllEvents());
 
         return "/homePage/events";
     }

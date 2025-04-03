@@ -3,7 +3,9 @@ package com.example.HomeSphere.services;
 import com.example.HomeSphere.models.Event;
 import com.example.HomeSphere.models.User;
 import com.example.HomeSphere.models.UserEvent;
+import com.example.HomeSphere.repositories.UserEventRepository;
 import com.example.HomeSphere.repositories.UserRepository;
+import jakarta.persistence.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,29 +19,19 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    private UserEventRepository userEventRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, UserEventRepository userEventRepository) {
         this.userRepository = userRepository;
+        this.userEventRepository = userEventRepository;
     }
 
     public void saveUser(User user) {
         userRepository.save(user);
     }
 
-    public List<UserEvent> getUserEvents(){
-        //TODO
-
-        return null;
-    }
-
-    public User getCurrentUser() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        if (auth != null && auth.isAuthenticated()) {
-            return userRepository.findByLogin(auth.getName()).get();
-        }
-
-        throw new RuntimeException();
+    public void logUserEvent(UserEvent userEvent) {
+        userEventRepository.save(userEvent);
     }
 
     /*public String getUserEmail() {

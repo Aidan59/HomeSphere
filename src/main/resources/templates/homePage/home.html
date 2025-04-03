@@ -99,7 +99,7 @@
                         <a th:href="${device.getIp()}">
                         <div class="device_item_grid">
                             <img class="img_cam" style="height: 80px; width: 80px;" th:src="@{/images/general/cctv.png}" src="/static/images/general/cctv.png">
-                            <p th:text="${device.getName()}"></p>
+                            <p style="font-size: 30px" th:text="${device.getName()}">DEVICE</p>
                         </div>
                         </a>
                     </div>
@@ -113,9 +113,11 @@
             <div class="events">
                 <p style="font-size: 40px">Events</p>
                 <hr>
-
-                <!--TODO-->
-                <!--<p style="font-size: 20px; justify-self: center; padding-top: 20px">No events here.</p>-->
+                <div style="padding-top: 20px" th:each="event : ${events}">
+                    <p style="font-size: 20px" th:text="${#temporals.format(event.getTime(), 'HH:mm')} + ' ' + ${event.getEvent()}">EVENT</p>
+                    <hr>
+                </div>
+                <p th:if="${events.isEmpty()}" style="font-size: 20px; justify-self: center; padding-top: 20px">No events here.</p>
             </div>
         </div>
 
