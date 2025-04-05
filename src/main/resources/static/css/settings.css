@@ -1,0 +1,37 @@
+.settings{
+    width: 70%;
+    height: 90vh;
+
+    padding-left: 30px;
+}
+
+.settings_content{
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.settings_form{
+    display: flex;
+    flex-direction: column;
+}
+
+.settings_form_content{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+}
+
+.submit_button{
+    justify-self: center;
+    text-align: center;
+    width: 250px;
+    height: 30px;
+    border-radius: 10px;
+    border-style: hidden;
+    margin-top: 20px;
+    background-color: lightgray;
+}

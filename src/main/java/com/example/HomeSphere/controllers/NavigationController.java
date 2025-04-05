@@ -55,7 +55,9 @@ public class NavigationController {
     }
 
     @GetMapping("/homePage/settings")
-    public String settings(Model model) {
+    public String settings(@ModelAttribute("settings") UserSettings settings, Model model) {
+
+        model.addAttribute("settings", userService.getUserSettings());
 
         return "/homePage/settings";
     }
