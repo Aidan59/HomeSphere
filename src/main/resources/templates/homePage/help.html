@@ -3,29 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>Help</title>
-    <link rel="stylesheet" th:href="@{/css/home.css}">
-    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" th:href="@{/css/template.css}">
+    <link rel="stylesheet" href="/static/css/template.css">
+
+    <link rel="stylesheet" th:href="@{/css/help.css}">
+    <link rel="stylesheet" href="/static/css/help.css">
 </head>
 <body>
-<div class="container">
+<div id="container" class="container">
 
     <div class="left_side">
-        <h1 class="logo_text">Home Sphere</h1>
 
-        <a class="button" href="/homePage/home">Home screen</a>
-        <a class="button" href="/homePage/devices">Devices</a>
-        <a class="button" href="/homePage/events">Events</a>
-        <a class="button" href="/homePage/settings">Settings</a>
-        <a class="button" href="/homePage/help">Help</a>
+        <div class="left_bottom"></div>
+
+        <div class="wrapper" style="padding-left: 20px ">
+
+            <h1 class="logo_text">Home Sphere</h1>
+
+            <div class="menu">
+                <a class="menu_option" th:href="@{/homePage/home}">
+                    <img th:src="@{/images/menu/home.png}" src="/static/images/menu/home.png">
+                    <span>Home screen</span>
+                </a>
+                <a class="menu_option" th:href="@{/homePage/devices}">
+                    <img th:src="@{/images/menu/device.png}" src="/static/images/menu/device.png">
+                    <span>Devices</span>
+                </a>
+                <a class="menu_option" th:href="@{/homePage/events}">
+                    <img th:src="@{/images/menu/event.png}" src="/static/images/menu/event.png">
+                    <span>Events</span>
+                </a>
+                <a class="menu_option" th:href="@{/homePage/settings}">
+                    <img th:src="@{/images/menu/setting.png}" src="/static/images/menu/setting.png">
+                    <span>Settings</span>
+                </a>
+                <a class="menu_option" th:href="@{/homePage/help}">
+                    <img th:src="@{/images/menu/help.png}" src="/static/images/menu/help.png">
+                    <span>Help</span>
+                </a>
+            </div>
+        </div>
+
+
     </div>
 
     <div class="right_side">
+
         <div class="right_top">
             <p style="font-size: 20px">Today is,</p>
             <div style="font-size: 20px; padding-right: 20px" id="currentDate"></div>
-            <img href="/homePage/profile" class="profile_img" src="/images/general/profile.png">
+            <a th:href="@{/profile}">
+                <img class="profile_img" th:src="@{/images/general/profile.png}" src="/static/images/general/profile.png">
+            </a>
         </div>
-        <div class="right_bottom"></div>
+
+        <div class="right_bottom">
+            <div class="help">
+                <p style="font-size: 40px">Help</p>
+                <hr>
+                <p style="font-size: 20px; margin-top: 20px; text-align: justify">HomeSphere web service is a platform that allows users to remotely control and monitor various devices within their home through an internet connection. These devices may include lighting, thermostats, security cameras, door locks, and home appliances. By integrating with mobile apps, voice assistants, and web interfaces, users can automate routines, receive real-time alerts, and ensure their home is energy-efficient and secure. The system leverages IoT (Internet of Things) technology to enable seamless communication between devices, offering convenience, safety, and improved quality of life.</p>
+                <p style="font-size: 20px; margin-top: 20px; text-align: justify">For any help get contac with us HomeSphereSupport@gmail.com</p>
+            </div>
+        </div>
+
     </div>
 
 </div>

@@ -85,7 +85,9 @@
         <div class="right_top">
             <p style="font-size: 20px">Today is,</p>
             <div style="font-size: 20px; padding-right: 20px" id="currentDate"></div>
-            <img href="/homePage/profile" class="profile_img" th:src="@{/images/general/profile.png}" src="/static/images/general/profile.png">
+            <a th:href="@{/profile}">
+                <img class="profile_img" th:src="@{/images/general/profile.png}" src="/static/images/general/profile.png">
+            </a>
         </div>
 
         <div class="right_bottom">

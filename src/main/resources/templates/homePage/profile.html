@@ -2,16 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Events</title>
+    <title>Profile</title>
     <link rel="stylesheet" th:href="@{/css/template.css}">
     <link rel="stylesheet" href="/static/css/template.css">
 
-    <link rel="stylesheet" th:href="@{/css/events.css}">
-    <link rel="stylesheet" href="/static/css/events.css">
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+    <link rel="stylesheet" href="/static/css/profile.css">
 </head>
 <body>
-</div>
-
 <div id="container" class="container">
 
     <div class="left_side">
@@ -60,14 +58,27 @@
         </div>
 
         <div class="right_bottom">
-            <div class="events">
-                <p style="font-size: 40px">Events</p>
+            <div class="profile">
+                <p style="font-size: 40px">Profile</p>
                 <hr>
-                <div style="padding-top: 20px" th:each="event : ${events}">
-                    <p style="font-size: 20px" th:text="${#temporals.format(event.getTime(), 'dd.MM.yyyy HH:mm:ss')} + ' ' + ${event.getEvent()}">EVENT</p>
-                    <hr>
+
+                <div class="profile_content">
+                    <p style="font-size: 20px">My details</p>
+
+                    <div>
+                        <p style="font-size: 15px">Name:</p>
+                        <p th:text="${user.getFullname()}" style="font-size: 20px">FULL NAME</p>
+                    </div>
+
+                    <div>
+                        <p style="font-size: 15px">Email:</p>
+                        <p th:text="${user.getEmail()}" style="font-size: 20px">EMAIL</p>
+                    </div>
+
+                    <form method="POST" th:action="@{/logout}">
+                        <input class="submit_button" type="submit" value="Logout">
+                    </form>
                 </div>
-                <p th:if="${events.isEmpty()}" style="font-size: 20px; justify-self: center; padding-top: 20px">No events here.</p>
             </div>
         </div>
 

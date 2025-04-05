@@ -63,9 +63,17 @@ public class NavigationController {
     }
 
     @GetMapping("/homePage/help")
-    public String help(Model model) {
+    public String help() {
 
         return "/homePage/help";
+    }
+
+    @GetMapping("/profile")
+    public String profile(Model model) {
+
+        model.addAttribute("user", userDetailsService.getCurrentUser());
+
+        return "/homePage/profile";
     }
 
 
