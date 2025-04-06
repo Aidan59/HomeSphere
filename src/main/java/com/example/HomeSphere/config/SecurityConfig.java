@@ -1,6 +1,7 @@
 package com.example.HomeSphere.config;
 
 import com.example.HomeSphere.handlers.LoginSuccessHandler;
+import com.example.HomeSphere.handlers.LogoutSuccessHandler;
 import com.example.HomeSphere.services.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,11 +20,13 @@ public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
     private final LoginSuccessHandler loginSuccessHandler;
+    private final LogoutSuccessHandler logoutSuccessHandler;
 
     @Autowired
-    public SecurityConfig(UserDetailsService userDetailsService, LoginSuccessHandler loginSuccessHandler) {
+    public SecurityConfig(UserDetailsService userDetailsService, LoginSuccessHandler loginSuccessHandler, LogoutSuccessHandler logoutSuccessHandler) {
         this.userDetailsService = userDetailsService;
         this.loginSuccessHandler = loginSuccessHandler;
+        this.logoutSuccessHandler = logoutSuccessHandler;
     }
 
     @Bean
@@ -42,6 +45,7 @@ public class SecurityConfig {
 
                 )
                 .logout(logout -> logout
+                        .addLogoutHandler(logoutSuccessHandler)
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/auth/login")
                         .invalidateHttpSession(true)
