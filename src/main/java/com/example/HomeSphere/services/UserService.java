@@ -2,20 +2,12 @@ package com.example.HomeSphere.services;
 
 import com.example.HomeSphere.models.Event;
 import com.example.HomeSphere.models.User;
-import com.example.HomeSphere.models.UserEvent;
 import com.example.HomeSphere.models.UserSettings;
-import com.example.HomeSphere.repositories.UserEventRepository;
+import com.example.HomeSphere.repositories.EventRepository;
 import com.example.HomeSphere.repositories.UserRepository;
 import com.example.HomeSphere.repositories.UserSettingsRepository;
-import jakarta.persistence.Table;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -23,13 +15,13 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
     private UserDetailsService userDetailsService;
-    private UserEventRepository userEventRepository;
+    private EventRepository eventRepository;
     private UserSettingsRepository userSettingsRepository;
 
-    public UserService(UserRepository userRepository, UserDetailsService userDetailsService, UserEventRepository userEventRepository, UserSettingsRepository userSettingsRepository) {
+    public UserService(UserRepository userRepository, UserDetailsService userDetailsService, EventRepository eventRepository, UserSettingsRepository userSettingsRepository) {
         this.userRepository = userRepository;
         this.userDetailsService = userDetailsService;
-        this.userEventRepository = userEventRepository;
+        this.eventRepository = eventRepository;
         this.userSettingsRepository = userSettingsRepository;
     }
 
@@ -37,8 +29,8 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void logUserEvent(UserEvent userEvent) {
-        userEventRepository.save(userEvent);
+    public void logUserEvent(Event userEvent) {
+        eventRepository.save(userEvent);
     }
 
     public void updateUserSettings(UserSettings userSettings) {

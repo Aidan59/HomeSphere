@@ -40,7 +40,7 @@ public class User {
     private List<Device> deviceList;
 
     @OneToMany(mappedBy = "user_id")
-    private List<UserEvent> userEventList;
+    private List<Event> userEventList;
 
     public User() {
     }
@@ -93,11 +93,11 @@ public class User {
         this.deviceList = deviceList;
     }
 
-    public List<UserEvent> getUserEventList() {
+    public List<Event> getUserEventList() {
         return userEventList;
     }
 
-    public void setUserEventList(List<UserEvent> userEventList) {
+    public void setUserEventList(List<Event> userEventList) {
         this.userEventList = userEventList;
     }
 }

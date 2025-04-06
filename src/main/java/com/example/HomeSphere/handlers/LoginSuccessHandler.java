@@ -1,7 +1,6 @@
 package com.example.HomeSphere.handlers;
 
-import com.example.HomeSphere.models.UserEvent;
-import com.example.HomeSphere.repositories.UserEventRepository;
+import com.example.HomeSphere.models.Event;
 import com.example.HomeSphere.services.UserDetailsService;
 import com.example.HomeSphere.services.UserService;
 import jakarta.servlet.ServletException;
@@ -30,14 +29,13 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         String sec_ch_ua = request.getHeader("Sec-Ch-Ua");
+        Event userEvent = new Event();
 
-        UserEvent userEvent = new UserEvent(userDetailsService.getCurrentUser(), "Login was performed from " +
-                request.getHeader("Sec-Ch-Ua").substring(sec_ch_ua.lastIndexOf(',') + 1, sec_ch_ua.lastIndexOf(';')).replace('\"', ' ') +
-                ", " +
-                request.getHeader("Sec-Ch-Ua-Platform").replace('\"', ' '),
-                LocalDateTime.now());
+        userEvent.setUser_id(userDetailsService.getCurrentUser());
+        userEvent.setEvent("Login was performed from " + request.getHeader("Sec-Ch-Ua").substring(sec_ch_ua.lastIndexOf(',') + 1, sec_ch_ua.lastIndexOf(';')).replace('\"', ' ') + ", " + request.getHeader("Sec-Ch-Ua-Platform").replace('\"', ' '));
+        userEvent.setTime(LocalDateTime.now());
+
         userService.logUserEvent(userEvent);
-
 
         response.sendRedirect("/homePage/home");
     }

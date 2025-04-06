@@ -30,7 +30,7 @@ public class Device {
     private String name;
 
     @OneToMany(mappedBy = "device_id")
-    private List<DeviceEvent> deviceEventsList;
+    private List<Event> deviceEventsList;
 
 
     public Device() {
@@ -68,11 +68,11 @@ public class Device {
         this.name = name;
     }
 
-    public List<DeviceEvent> getDeviceEventsList() {
+    public List<Event> getDeviceEventsList() {
         return deviceEventsList;
     }
 
-    public void setDeviceEventsList(List<DeviceEvent> deviceEventsList) {
+    public void setDeviceEventsList(List<Event> deviceEventsList) {
         this.deviceEventsList = deviceEventsList;
     }
 }

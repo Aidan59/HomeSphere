@@ -32,7 +32,7 @@ public class NavigationController {
     @GetMapping("/homePage/home")
     public String home(@ModelAttribute("device") Device device, Model model) {
 
-        model.addAttribute("events", eventService.getAllEvents());
+        model.addAttribute("events", eventService.getTopEvents());
         model.addAttribute("deviceList", userDetailsService.getCurrentUser().getDeviceList());
 
         return "/homePage/home";
@@ -49,7 +49,7 @@ public class NavigationController {
     @GetMapping("/homePage/events")
     public String events(Model model) {
 
-        model.addAttribute("events", eventService.getAllEvents());
+        model.addAttribute("events", eventService.getTopEvents());
 
         return "/homePage/events";
     }

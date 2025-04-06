@@ -1,44 +1,78 @@
 package com.example.HomeSphere.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+
+import java.security.Timestamp;
 import java.time.LocalDateTime;
 
-@MappedSuperclass
+@Entity(name = "events")
 public class Event {
 
-    public Event(String event, LocalDateTime time) {
-        this.event = event;
-        this.time = time;
+    public Event() {
     }
 
-    public Event() {}
+
 
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private int id;
 
-    @NotEmpty
-    @Size(min = 2, max = 100)
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user_id;
+
+    @ManyToOne
+    @JoinColumn(name = "device_id")
+    private Device device_id;
+
     @Column
+    @NotNull
     private String event;
 
-    @NotNull
     @Column
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime time;
 
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public User getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(User user_id) {
+        this.user_id = user_id;
+    }
+
+    public Device getDevice_id() {
+        return device_id;
+    }
+
+    public void setDevice_id(Device device_id) {
+        this.device_id = device_id;
+    }
+
     public String getEvent() {
         return event;
     }
 
+    public void setEvent(String event) {
+        this.event = event;
+    }
+
     public LocalDateTime getTime() {
         return time;
+    }
+
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 }

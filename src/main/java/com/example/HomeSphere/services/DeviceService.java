@@ -1,8 +1,6 @@
 package com.example.HomeSphere.services;
 
 import com.example.HomeSphere.models.Device;
-import com.example.HomeSphere.models.DeviceEvent;
-import com.example.HomeSphere.models.UserEvent;
 import com.example.HomeSphere.repositories.DeviceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

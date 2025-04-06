@@ -65,14 +65,16 @@
                 <div class="profile_content">
                     <p style="font-size: 20px">My details</p>
 
-                    <div>
+                    <div class="profile_content_block">
                         <p style="font-size: 15px">Name:</p>
-                        <p th:text="${user.getFullname()}" style="font-size: 20px">FULL NAME</p>
+                        <p style="display: inline" th:text="${user.getFullname()}" style="font-size: 20px">FULL NAME</p>
+                        <img class="edit_img" src="/static/images/general/edit.png">
                     </div>
 
-                    <div>
+                    <div class="profile_content_block">
                         <p style="font-size: 15px">Email:</p>
-                        <p th:text="${user.getEmail()}" style="font-size: 20px">EMAIL</p>
+                        <p style="display: inline" th:text="${user.getEmail()}" style="font-size: 20px">EMAIL</p>
+                        <img class="edit_img" src="/static/images/general/edit.png">
                     </div>
 
                     <form method="POST" th:action="@{/logout}">
