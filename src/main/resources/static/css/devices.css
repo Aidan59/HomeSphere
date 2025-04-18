@@ -1,9 +1,38 @@
 .devices{
-    width: 100%;
+    width: 70%;
     height: 90vh;
 
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.group_form{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    width: 30%;
+    height: 90vh;
+
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+select{
+    border-style: none;
+    background-color: var(--bgcolor);
+
+    font-size: 20px;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+
+
+    justify-content: space-between;
+    align-items: end;
 }
 
 .row_container{
@@ -22,7 +51,7 @@
 
     gap: 20px;
 
-    width: 70%;
+
     height: 100px;
 
     margin-top: 20px;
@@ -36,7 +65,6 @@
     align-items: center;
     justify-content: center;
 
-    width: 70%;
     height: 100px;
 
     margin-top: 20px;

@@ -35,11 +35,14 @@ public class User {
     @Column
     private String email;
 
-    @OneToMany(mappedBy = "user_id")
+    @OneToMany(mappedBy = "user")
     private List<Device> deviceList;
 
-    @OneToMany(mappedBy = "user_id")
+    @OneToMany(mappedBy = "user")
     private List<Event> userEventList;
+
+    @OneToMany(mappedBy = "user")
+    private List<Group> groupList;
 
     public User() {
     }
@@ -98,5 +101,13 @@ public class User {
 
     public void setUserEventList(List<Event> userEventList) {
         this.userEventList = userEventList;
+    }
+
+    public List<Group> getGroupList() {
+        return groupList;
+    }
+
+    public void setGroupList(List<Group> groupList) {
+        this.groupList = groupList;
     }
 }

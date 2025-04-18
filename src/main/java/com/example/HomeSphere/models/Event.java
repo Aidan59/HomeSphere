@@ -12,8 +12,6 @@ public class Event {
     public Event() {
     }
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -21,11 +19,11 @@ public class Event {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user_id;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "device_id")
-    private Device device_id;
+    private Device device;
 
     @Column
     @NotNull
@@ -44,20 +42,20 @@ public class Event {
         this.id = id;
     }
 
-    public User getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Device getDevice_id() {
-        return device_id;
+    public Device getDevice() {
+        return device;
     }
 
-    public void setDevice_id(Device device_id) {
-        this.device_id = device_id;
+    public void setDevice(Device device) {
+        this.device = device;
     }
 
     public String getEvent() {

@@ -1,6 +1,8 @@
 package com.example.HomeSphere.controllers;
 
 import com.example.HomeSphere.models.Device;
+import com.example.HomeSphere.models.DeviceType;
+import com.example.HomeSphere.models.Group;
 import com.example.HomeSphere.services.DeviceService;
 import com.example.HomeSphere.services.UserDetailsService;
 import com.example.HomeSphere.services.UserService;
@@ -28,9 +30,29 @@ public class DevicesController {
     @PostMapping("/addCamera")
     public String addCamera(@ModelAttribute("device") @Valid Device device, BindingResult bindingResult) {
 
-        device.setUser_id(userDetailsService.getCurrentUser());
+        device.setUser(userDetailsService.getCurrentUser());
+        device.setDeviceType(DeviceType.CAMERA);
         deviceService.save(device);
 
         return "redirect:/homePage/home";
+    }
+
+    @PostMapping("/addSensor")
+    public String addSensor(@ModelAttribute("device") @Valid Device device, BindingResult bindingResult) {
+
+        device.setUser(userDetailsService.getCurrentUser());
+        device.setDeviceType(DeviceType.SENSOR);
+        deviceService.save(device);
+
+        return "redirect:/homePage/home";
+    }
+
+    @PostMapping("/sortDevices")
+    public String sortDevices(@ModelAttribute("group") Group group){
+
+
+        //TODO
+        return "redirect:/homePage/devices";
+
     }
 }

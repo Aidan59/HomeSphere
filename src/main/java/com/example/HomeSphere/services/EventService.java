@@ -23,7 +23,7 @@ public class EventService {
     }
 
     public List<Event> getTopEvents() {
-        return eventRepository.findTopEvents(userDetailsService.getCurrentUser());
+        return eventRepository.findTop10EventsByUser(userDetailsService.getCurrentUser());
     }
 
 }

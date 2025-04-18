@@ -28,7 +28,7 @@ public class RegistrationService {
         userService.saveUser(user);
 
         UserSettings userSettings = new UserSettings();
-        userSettings.setUser_id(user);
+        userSettings.setUser(user);
         userSettings.setEmail_notifications(false);
         userSettings.setTelegram_notifications(false);
         settingsRepository.save(userSettings);

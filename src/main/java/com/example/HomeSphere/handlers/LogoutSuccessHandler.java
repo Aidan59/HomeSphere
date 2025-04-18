@@ -29,7 +29,7 @@ public class LogoutSuccessHandler implements LogoutHandler {
         String sec_ch_ua = request.getHeader("Sec-Ch-Ua");
         Event userEvent = new Event();
 
-        userEvent.setUser_id(userDetailsService.getCurrentUser());
+        userEvent.setUser(userDetailsService.getCurrentUser());
         userEvent.setEvent("Logout from session was performed from " + request.getHeader("Sec-Ch-Ua").substring(sec_ch_ua.lastIndexOf(',') + 1, sec_ch_ua.lastIndexOf(';')).replace('\"', ' ') + ", " + request.getHeader("Sec-Ch-Ua-Platform").replace('\"', ' '));
         userEvent.setTime(LocalDateTime.now());
 

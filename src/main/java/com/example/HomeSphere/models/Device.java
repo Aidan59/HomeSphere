@@ -17,7 +17,7 @@ public class Device {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user_id;
+    private User user;
 
     @NotEmpty
     @Size(min = 2, max = 50)
@@ -29,8 +29,15 @@ public class Device {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "device_id")
+    @OneToOne
+    private Group group;
+
+    @OneToMany(mappedBy = "device")
     private List<Event> deviceEventsList;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "device_type", columnDefinition = "device_type")
+    private DeviceType deviceType;
 
 
     public Device() {
@@ -44,12 +51,12 @@ public class Device {
         this.id = id;
     }
 
-    public User getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getIp() {
@@ -74,5 +81,21 @@ public class Device {
 
     public void setDeviceEventsList(List<Event> deviceEventsList) {
         this.deviceEventsList = deviceEventsList;
+    }
+
+    public DeviceType getDeviceType() {
+        return deviceType;
+    }
+
+    public void setDeviceType(DeviceType deviceType) {
+        this.deviceType = deviceType;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }

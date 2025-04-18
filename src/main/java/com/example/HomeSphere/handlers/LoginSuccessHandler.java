@@ -31,7 +31,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         String sec_ch_ua = request.getHeader("Sec-Ch-Ua");
         Event userEvent = new Event();
 
-        userEvent.setUser_id(userDetailsService.getCurrentUser());
+        userEvent.setUser(userDetailsService.getCurrentUser());
         userEvent.setEvent("Login was performed from " + request.getHeader("Sec-Ch-Ua").substring(sec_ch_ua.lastIndexOf(',') + 1, sec_ch_ua.lastIndexOf(';')).replace('\"', ' ') + ", " + request.getHeader("Sec-Ch-Ua-Platform").replace('\"', ' '));
         userEvent.setTime(LocalDateTime.now());
 

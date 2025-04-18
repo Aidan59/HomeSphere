@@ -12,7 +12,7 @@ public class UserSettings {
     @OneToOne
     @MapsId
     @JoinColumn(name = "user_id")
-    private User user_id;
+    private User user;
 
     @Column
     private boolean email_notifications;
@@ -28,12 +28,12 @@ public class UserSettings {
         this.id = id;
     }
 
-    public User getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public boolean isEmail_notifications() {

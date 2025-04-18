@@ -8,10 +8,11 @@ import com.example.HomeSphere.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Controller
 public class NavigationController {
@@ -34,14 +35,32 @@ public class NavigationController {
 
         model.addAttribute("events", eventService.getTopEvents());
         model.addAttribute("deviceList", userDetailsService.getCurrentUser().getDeviceList());
+        model.addAttribute("groupList", userDetailsService.getCurrentUser().getGroupList());
 
         return "/homePage/home";
     }
 
-    @GetMapping("/homePage/devices")
-    public String devices(@ModelAttribute("device") Device device, Model model) {
+    @RequestMapping(value = "/homePage/devices", method = {RequestMethod.GET, RequestMethod.POST})
+    public String devices(@RequestParam(value = "groupName", required = false) String groupName, Model model) {
 
-        model.addAttribute("deviceList", userDetailsService.getCurrentUser().getDeviceList());
+        List<Group> groupList = new ArrayList<>();
+        if (groupName == null || groupName.equals("All")) {
+            groupList.add(new Group(-1, null, "All"));
+            groupList.addAll(userDetailsService.getCurrentUser().getGroupList());
+
+            model.addAttribute("deviceList", userDetailsService.getCurrentUser().getDeviceList());
+        } else {
+            groupList.addAll(userDetailsService.getCurrentUser().getGroupList());
+            groupList.add(new Group(-1, null, "All"));
+
+            model.addAttribute("deviceList", deviceService.getAllUserDevicesByGroup(groupName));
+        }
+
+
+        model.addAttribute("groupList", groupList);
+        model.addAttribute("newGroup", new Group());
+        model.addAttribute("device", new Device());
+
 
         return "/homePage/devices";
     }

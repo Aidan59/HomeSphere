@@ -30,6 +30,12 @@
             <form method="POST" th:action="@{/addCamera}" th:object="${device}">
                 <input style="display: block" th:field="*{name}" class="text_field" placeholder="Name" type="text">
                 <input style="display: block" th:field="*{ip}" class="text_field" placeholder="IP" type="text">
+                <select th:field="*{group}" style="display: block">
+                    <option th:each="group: ${groupList}"
+                    th:text="${group.name}"
+                    th:value="${group.getId()}"
+                    ></option>
+                </select>
                 <input style="display: block" class="submit_button" type="submit" value="Add">
             </form>
         </div>
@@ -38,6 +44,18 @@
 
     <div id="modal_sensor" class="modal_sensor">
         <p>Sensor</p>
+        <p style="align-self: center; padding-top: 100px">Sensor</p>
+        <form method="POST" th:action="@{/addSensor}" th:object="${device}">
+            <input style="display: block" th:field="*{name}" class="text_field" placeholder="Name" type="text">
+            <input style="display: block" th:field="*{ip}" class="text_field" placeholder="IP" type="text">
+            <select th:field="*{group}" style="display: block">
+                <option th:each="group: ${groupList}"
+                        th:text="${group.name}"
+                        th:value="${group.getId()}"
+                ></option>
+            </select>
+            <input style="display: block" class="submit_button" type="submit" value="Add">
+        </form>
         <img id="close_button_sensor" class="close_button" th:src="@{/images/general/close.png}">
     </div>
 
@@ -100,7 +118,8 @@
                     <div th:each="device : ${deviceList}">
                         <a th:href="${device.getIp()}">
                         <div class="device_item_grid">
-                            <img class="img_cam" style="height: 80px; width: 80px;" th:src="@{/images/general/cctv.png}" src="/static/images/general/cctv.png">
+                            <img th:if="${device.getDeviceType() == T(com.example.HomeSphere.models.DeviceType).CAMERA}" class="img_cam" style="height: 80px; width: 80px;" th:src="@{/images/general/cctv.png}" src="/static/images/general/cctv.png">
+                            <img th:if="${device.getDeviceType() == T(com.example.HomeSphere.models.DeviceType).SENSOR}" class="img_cam" style="height: 80px; width: 80px;" th:src="@{/images/general/sensor.png}" src="/static/images/general/cctv.png">
                             <p style="font-size: 30px" th:text="${device.getName()}">DEVICE</p>
                         </div>
                         </a>
