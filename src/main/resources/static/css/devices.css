@@ -56,7 +56,15 @@ select{
 
     margin-top: 20px;
     background-color: var(--lightpurple);
+    color: var(--bgcolor);
     border-radius: 40px;
+}
+
+.device_delete{
+    height: 35px;
+    width: 35px;
+
+    opacity: 0;
 }
 
 .open_modal_row{
@@ -70,6 +78,16 @@ select{
     margin-top: 20px;
     background-color: var(--lightpurple);
     border-radius: 40px;
+}
+
+.device_item_row:hover .device_delete{
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.device_item_row:not(hover) .device_delete{
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
 }
 
 .device_item_row:hover{

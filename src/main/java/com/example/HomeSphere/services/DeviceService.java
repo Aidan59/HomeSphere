@@ -6,6 +6,7 @@ import com.example.HomeSphere.repositories.DeviceRepository;
 import com.example.HomeSphere.repositories.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -35,7 +36,22 @@ public class DeviceService {
 
     }
 
+    public void delete(Device device) {
+        deviceRepository.delete(device);
+    }
+
+    @Transactional
+    public void deleteGroupByName(String groupName) {
+        groupRepository.deleteGroupByName(groupName);
+    }
+
+    @Transactional
+    public void deleteDeviceById(int id) {
+        deviceRepository.deleteDeviceById(id);
+    }
+
     public void save(Group group) {
         groupRepository.save(group);
     }
+
 }

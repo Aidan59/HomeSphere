@@ -127,19 +127,27 @@
                             </option>
                         </select>
                     </form>
+
+                    <form id="deleteGroupForm" th:method="POST" th:action="@{/homePage/devices}" th:object="${currentGroup}">
+                        <input type="hidden" name="deleteGroup" th:value="${currentGroup.name}">
+                        <img onclick="document.getElementById('deleteGroupForm').submit();" style="width: 20px; height: 20px"  th:src="@{/images/general/delete.png}" src="/static/images/general/delete.png">
+                    </form>
                 </div>
 
                 <hr>
                 <div class="row_container">
-                    <div th:each="device : ${deviceList}">
-                        <a th:href="${device.getIp()}">
+                    <div th:each="deviceL : ${deviceList}">
                             <div class="device_item_row">
-                                <img th:if="${device.getDeviceType() == T(com.example.HomeSphere.models.DeviceType).CAMERA}" style="height: 80px; width: 80px;" th:src="@{/images/general/cctv.png}" src="/static/images/general/cctv.png">
-                                <img th:if="${device.getDeviceType() == T(com.example.HomeSphere.models.DeviceType).SENSOR}" style="height: 80px; width: 80px;" th:src="@{/images/general/sensor.png}" src="/static/images/general/cctv.png">
-                                <p th:text="${device.getName()}"></p>
-                                <p th:text="${device.getIp()}"></p>
+                                <img th:if="${deviceL.getDeviceType() == T(com.example.HomeSphere.models.DeviceType).CAMERA}" style="height: 80px; width: 80px;" th:src="@{/images/general/cctv.png}" src="/static/images/general/cctv.png">
+                                <img th:if="${deviceL.getDeviceType() == T(com.example.HomeSphere.models.DeviceType).SENSOR}" style="height: 80px; width: 80px;" th:src="@{/images/general/sensor.png}" src="/static/images/general/sensor.png">
+                                <p th:text="${deviceL.getName()}"></p>
+                                <p th:text="${deviceL.getId()}"></p>
+
+                                <form th:id="'deleteForm_' + ${deviceL.getId()}" th:method="POST" th:action="@{/homePage/devices/delete}">
+                                    <input type="hidden" name="id" th:value="${deviceL.getIp()}"/>
+                                    <img th:attr="onclick='document.getElementById(\'deleteForm_' + ${deviceL.getId()} + '\').submit();'" class="device_delete" th:src="@{/images/general/close_white.png}" src="/static/images/general/close_white.png">
+                                </form>
                             </div>
-                        </a>
                     </div>
 
                     <div id="openModal" class="open_modal_row">

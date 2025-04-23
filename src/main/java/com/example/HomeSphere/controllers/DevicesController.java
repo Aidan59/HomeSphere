@@ -10,8 +10,10 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class DevicesController {
@@ -47,12 +49,12 @@ public class DevicesController {
         return "redirect:/homePage/home";
     }
 
-    @PostMapping("/sortDevices")
-    public String sortDevices(@ModelAttribute("group") Group group){
+    @PostMapping("/homePage/devices/delete")
+    public String deleteDevice(@RequestParam("id") int id) {
 
+        deviceService.deleteDeviceById(id);
 
-        //TODO
         return "redirect:/homePage/devices";
-
     }
+
 }

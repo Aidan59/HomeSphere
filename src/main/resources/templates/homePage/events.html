@@ -68,6 +68,61 @@
                     <hr>
                 </div>
                 <p th:if="${events.isEmpty()}" style="font-size: 20px; justify-self: center; padding-top: 20px">No events here.</p>
+
+                <div class="event_pagination">
+                    <a th:if="${page > 1}">
+                        <img th:href="@{'/homePage/events?page=' + ${page - 1}}" th:src="@{/images/pagination/left-arrow.png}" src="/static/images/pagination/left-arrow.png">
+                    </a>
+
+                    <div class="event_pagination_block" th:if="${pageCount} < 3">
+                        <a th:href="@{/homePage/events?page=1}">
+                            <p>1</p>
+                        </a>
+                        <a th:if="${pageCount} == 2" th:href="@{/homePage/events/?page=2}">
+                            <p>2</p>
+                        </a>
+                    </div>
+
+                    <div class="event_pagination_block" th:if="${page} == 1">
+                        <a th:href="@{/homePage/events?page=1}">
+                            <p>1</p>
+                        </a>
+                        <a th:href="@{/homePage/events?page=2}">
+                            <p>2</p>
+                        </a>
+                        <a th:href="@{/homePage/events?page=3}">
+                            <p>3</p>
+                        </a>
+                    </div>
+
+                    <div class="event_pagination_block" th:if="${page > 1 && page < pageCount}">
+                        <a th:href="@{'/homePage/events?page=' + ${page - 1}}">
+                            <p th:text="${page - 1}"></p>
+                        </a>
+                        <a th:href="@{'/homePage/events?page=' + ${page}}">
+                            <p th:text="${page}"></p>
+                        </a>
+                        <a th:href="@{'/homePage/events?page=' + ${page + 1}}">
+                            <p th:text="${page + 1}"></p>
+                        </a>
+                    </div>
+
+                    <div class="event_pagination_block" th:if="${page == pageCount}">
+                        <a th:href="@{'/homePage/events?page=' + ${pageCount - 2}}">
+                            <p th:text="${pageCount - 2}"></p>
+                        </a>
+                        <a th:href="@{'/homePage/events?page=' + ${pageCount - 1}}">
+                            <p th:text="${pageCount - 1}"></p>
+                        </a>
+                        <a th:href="@{'/homePage/events?page=' + ${pageCount}}">
+                            <p th:text="${pageCount}"></p>
+                        </a>
+                    </div>
+
+                    <a th:if="${page < pageCount}">
+                        <img th:href="@{'/homePage/events?page=' + ${page + 1}}" th:src="@{/images/pagination/right-arrow.png}" src="/static/images/pagination/right-arrow.png">
+                    </a>
+                </div>
             </div>
         </div>
 

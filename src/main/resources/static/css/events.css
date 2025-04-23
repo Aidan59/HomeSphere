@@ -1,6 +1,26 @@
+.p{
+    color: var(--darkgray);
+}
+
 .events{
     width: 70%;
     height: 90vh;
 
     padding-left: 30px;
+}
+
+.event_pagination{
+    display: flex;
+    flex-direction: row;
+
+    gap: 15px;
+    color: var(--darkgray);
+}
+
+.event_pagination_block{
+    display: flex;
+    flex-direction: row;
+
+    font-size: 25px;
+    gap: 10px;
 }

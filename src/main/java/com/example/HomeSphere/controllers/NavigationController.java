@@ -41,7 +41,9 @@ public class NavigationController {
     }
 
     @RequestMapping(value = "/homePage/devices", method = {RequestMethod.GET, RequestMethod.POST})
-    public String devices(@RequestParam(value = "groupName", required = false) String groupName, Model model) {
+    public String devices(@RequestParam(value = "groupName", required = false) String groupName,
+                          @RequestParam(value = "deleteGroup", required = false) String deleteGroup,
+                          Model model) {
 
         List<Group> groupList = new ArrayList<>();
         if (groupName == null || groupName.equals("All")) {
@@ -56,19 +58,33 @@ public class NavigationController {
             model.addAttribute("deviceList", deviceService.getAllUserDevicesByGroup(groupName));
         }
 
+        System.out.println(deleteGroup);
+        if (deleteGroup != null) {
+            deviceService.deleteGroupByName(deleteGroup);
+        }
+
+        Group newGroup = new Group();
+        Group currentGroup = new Group();
+        currentGroup.setName(groupName);
 
         model.addAttribute("groupList", groupList);
-        model.addAttribute("newGroup", new Group());
+        model.addAttribute("newGroup", newGroup);
+        model.addAttribute("currentGroup", currentGroup);
         model.addAttribute("device", new Device());
 
 
         return "/homePage/devices";
     }
 
-    @GetMapping("/homePage/events")
-    public String events(Model model) {
+    @RequestMapping(value = "/homePage/events", method = {RequestMethod.GET, RequestMethod.POST})
+    public String events(@RequestParam(defaultValue = "1") int page,
+                         Model model) {
 
-        model.addAttribute("events", eventService.getTopEvents());
+        int pageSize = 10;
+
+        model.addAttribute("events", eventService.getEventsPage(page));
+        model.addAttribute("pageCount", eventService.getCountOfPages());
+        model.addAttribute("page", page);
 
         return "/homePage/events";
     }
