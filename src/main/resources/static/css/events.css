@@ -1,4 +1,14 @@
-.p{
+p {
+    color: var(--darkgray);
+}
+
+a {
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
     color: var(--darkgray);
 }
 
@@ -11,7 +21,8 @@
 
 .event_pagination{
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
 
     gap: 15px;
     color: var(--darkgray);
@@ -23,4 +34,9 @@
 
     font-size: 25px;
     gap: 10px;
+}
+
+.pagination_button{
+    width: 20px;
+    height: 20px;
 }

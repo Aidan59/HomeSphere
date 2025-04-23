@@ -83,7 +83,7 @@ public class NavigationController {
         int pageSize = 10;
 
         model.addAttribute("events", eventService.getEventsPage(page));
-        model.addAttribute("pageCount", eventService.getCountOfPages());
+        model.addAttribute("pageCount", eventService.getCountOfPages() + 1);
         model.addAttribute("page", page);
 
         return "/homePage/events";

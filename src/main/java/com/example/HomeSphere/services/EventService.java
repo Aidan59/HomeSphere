@@ -28,7 +28,7 @@ public class EventService {
     }
 
     public List<Event> getEventsPage(int page){
-        return eventRepository.findAllByOrderByTimeDesc(PageRequest.of(page, 10)).getContent();
+        return eventRepository.findAllByOrderByTimeDesc(PageRequest.of(page - 1, 10)).getContent();
     }
 
     public int getCountOfPages(){
